@@ -10,7 +10,7 @@ import InterviewHistory from './pages/InterviewHistory'
 import Pricing from './pages/Pricing'
 import InterviewReport from './pages/InterviewReport'
 
-export const Server_URL = "https://interviewiq-znz9.onrender.com"
+export const Server_URL = "https://interviewiq-server-pvhe.onrender.com"
 
 function App() {
 
