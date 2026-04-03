@@ -18,12 +18,12 @@ connectDB();
 
 
 app.use(cors({
-    origin: [
+  origin: [
     "http://localhost:5173",
-    "https://interview-iq-vert.vercel.app/"
+    "https://interview-iq-vert.vercel.app"
   ],
-    credentials: true
-}))
+  credentials: true
+}));
 
 
 app.use(express.json())
