@@ -18,7 +18,10 @@ connectDB();
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: [
+    "http://localhost:5173",
+    "https://your-frontend.vercel.app"
+  ],
     credentials: true
 }))
 
@@ -38,5 +41,9 @@ app.use("/api/payment", paymentRouter)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+});
+
+app.get("/", (req, res) => {
+  res.send("API is running 🚀");
 });
 
