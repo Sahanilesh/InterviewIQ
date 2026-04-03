@@ -20,7 +20,7 @@ connectDB();
 app.use(cors({
     origin: [
     "http://localhost:5173",
-    "https://your-frontend.vercel.app"
+    "https://interview-iq-vert.vercel.app/"
   ],
     credentials: true
 }))
