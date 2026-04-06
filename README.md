@@ -95,45 +95,27 @@ Key Files:
 
 ---
 
-## 🏗️ Project Architecture
-User (React App)
-↓
-Firebase Google Sign-in (Client)
-↓
-JWT Authentication (Backend)
-↓
-Backend API (Node + Express)
-↓
-MongoDB (Users, Interviews, Reports)
-↓
-AI Service (OpenRouter)
-↓
-Razorpay (Payments)
-↓
-File Storage (multer / cloud-ready)
-
-
----
-
 ## 📂 Folder Structure
 
 InterviewIQ/
 │
-├── client/                 # Frontend (React)
-│   ├── components/
-│   ├── pages/
-│   ├── assets/
-│   └── firebase.js
+├── client/ # Frontend (React)
+│ ├── components/
+│ ├── pages/
+│ ├── assets/
+│ └── firebase.js
 │
-├── server/                 # Backend (Node + Express)
-│   ├── controllers/
-│   ├── routes/
-│   ├── models/
-│   ├── middleware/
-│   ├── services/
-│   └── config/
+├── server/ # Backend (Node + Express)
+│ ├── controllers/
+│ ├── routes/
+│ ├── models/
+│ ├── middleware/
+│ ├── services/
+│ └── config/
 │
 └── README.md
+
+---
 
 ## 🔄 Functional Flow
 1. User signs in via Google (Firebase authentication)
