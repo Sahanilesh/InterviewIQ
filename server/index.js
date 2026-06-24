@@ -39,11 +39,15 @@ app.use("/api/interview",interviewRouter)
 app.use("/api/payment", paymentRouter)
 
 
-app.listen(PORT, () => {
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
-});
+  });
+}
 
 app.get("/", (req, res) => {
   res.send("API is running 🚀");
 });
+
+export default app;
 
