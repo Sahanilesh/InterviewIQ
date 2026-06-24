@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 8000;
-connectDB();
+connectDB().catch(err => console.error("DB Connection error:", err.message));
 
 
 
