@@ -1,4 +1,3 @@
-import fs from 'fs'
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf.mjs"
 import { askAi } from '../services/openRouter.service.js'
 import User from '../models/user.model.js'
@@ -8,15 +7,12 @@ export const analyseResume = async (req, res) => {
         if (!req.file) {
             return res.status(400).json({ message: "Resume required" })
         }
-        const filepath = req.file.path
 
-        const fileBuffer = await fs.promises.readFile(filepath)
-        const uint8Array = new Uint8Array(fileBuffer)
+        const uint8Array = new Uint8Array(req.file.buffer)
 
         const pdf = await pdfjsLib.getDocument({ data: uint8Array }).promise
 
         let resumeText = ""
-        //Extract test from pdf
         for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
             const page = await pdf.getPage(pageNum);
             const content = await page.getTextContent();
@@ -54,11 +50,6 @@ Do NOT include explanations.
 
         const aiResponse = await askAi(messages)
         const parsed = JSON.parse(aiResponse)
-        // console.log("AI RESPONSE TYPE:", typeof aiResponse)
-        // console.log("AI RESPONSE:", aiResponse)
-
-
-        fs.unlinkSync(filepath)
 
         res.json({
             role: parsed.role,
@@ -72,9 +63,6 @@ Do NOT include explanations.
         console.error("Resume analysis error:", error.message);
         console.error("Full Error:", JSON.stringify(error, null, 2));
 
-        if (req.file && fs.existsSync(req.file.path)) {
-            fs.unlinkSync(req.file.path)
-        }
         return res.status(500).json({
             message: "Resume analysis failed",
             error: error.message
@@ -357,7 +345,7 @@ export const getMyInterviews = async (req, res) => {
     try {
         const interviews = await Interview.find({userId: req.userId})
         .sort({ createdAt: -1})
-        .select("Role experience mode finalScore createdAt");
+        .select("role experience mode finalScore createdAt");
 
         return res.status(200).json({interviews})
     } catch (error) {

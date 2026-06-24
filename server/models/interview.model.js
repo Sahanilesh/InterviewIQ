@@ -30,20 +30,20 @@ const interviewSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        require: true
+        required: true
     },
     role: {
         type: String,
-        require: true
+        required: true
     },
     experience: {
         type: String,
-        require: true
+        required: true
     },
     mode: {
         type: String,
         enum: ["HR", "Technical"],
-        require: true
+        required: true
     },
     resumeText: {
         type: String,
